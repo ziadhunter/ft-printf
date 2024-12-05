@@ -59,16 +59,25 @@ int	ft_putnbr(int nb)
     int i;
     char v[12];
     char base[] = "0123456789";
+	int	nega;
 
     i = 0;
     count = 0;
+	nega = 0;
 	if (nb == -2147483648)
 	{
 		count += write(1, "-2147483648", 11);
+		return(count);
+	}
+	if (nb == 0)
+	{
+		count += write(1, "0", 1);
+		return (count);
 	}
 	if (nb < 0)
 	{
 		count += write(1, "-", 1);
+		nega = 1;
 		nb *= -1;
 	}
 	while(nb > 0)
@@ -77,5 +86,5 @@ int	ft_putnbr(int nb)
 		nb /= 10;
     }
     count = print(v, i-1);
-    return count;
+    return (count + nega);
 }

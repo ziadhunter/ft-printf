@@ -6,7 +6,7 @@ int handle_num(va_list args)
     int i;
 
     i = va_arg(args, int);
-    return(ft_putnbr_base(i, "0123456789"));
+    return(ft_putnbr(i));
 }
 
 int handle_unnum(va_list args)

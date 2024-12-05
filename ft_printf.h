@@ -25,5 +25,6 @@ int handle_HEXA(va_list args);
 int	ft_putnbr_base(unsigned long nbr, char *base);
 int	len(char *base);
 int	print(char *v, int i);
+int	ft_putnbr(int nb);
 
 #endif

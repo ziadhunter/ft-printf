@@ -56,11 +56,14 @@ int ft_printf(const char *format, ...)
     {
         if (format[i] == '%')
         {
-            if (format[i+1] == '%')
-                count += write(1, "%", 1);
-            else
-                count += write_format(format[i+1], args, list_of_formats);
-            i += 2;
+            if (format[i+1] != '\0')
+            {
+                if (format[i+1] == '%')
+                    count += write(1, "%", 1);
+                else
+                    count += write_format(format[i+1], args, list_of_formats);
+                i += 2;
+            }
         }
         else
             count += write(1, &format[i++], 1);
