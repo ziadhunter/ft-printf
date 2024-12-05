@@ -1,6 +1,7 @@
 //#include "../includes/ft_printf.h"
 #include "ft_printf.h"
 
+
 int	print(char *v, int i)
 {
     int j;
@@ -8,7 +9,7 @@ int	print(char *v, int i)
     j = 0;
 	while (i >= 0)
 	{
-		j += write(1, &v[i], 1);
+		j += write(1, v + i, 1);
 		i--;
 	}
     return (j);

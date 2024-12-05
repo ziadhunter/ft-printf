@@ -9,5 +9,6 @@ int main ()
     //int i = 10;
     char *p = NULL;
     //printf("%d", ft_printf("%d\n", 0));
-    ft_printf("%s\n", p);
+    printf("my:%d\n", ft_printf("%s", p));
+     printf("cw:%d", printf("%s", p));
 }
