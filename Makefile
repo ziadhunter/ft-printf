@@ -2,7 +2,7 @@ NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar -rcs
-FILES = extra_utils.c  ft_printf.c  handle_char.c  handle_decimale.c  handlehexadecimale.c  handle_pointer.c  handle_string.c
+FILES = ft_printf.c extra_utils.c  handle_char.c  handle_decimale.c  handlehexadecimale.c  handle_pointer.c  handle_string.c
 
 OBJ =${FILES:%.c=%.o}
 

@@ -1,5 +1,5 @@
-//#include "../includes/ft_printf.h"
 #include "ft_printf.h"
+#include <stdarg.h>
 
 void initial_list(frmt (*list)[10]) 
 {
@@ -25,16 +25,47 @@ void initial_list(frmt (*list)[10])
 
 }
 
-int write_format(char c, va_list args, frmt list_of_formats[10])
+flags check_flags(const char *str, int *i, int *flag)
 {
-    int i;
+    flags there_is = {0, 0, 0};
 
-    i = 0;
-    while(list_of_formats[i].handle)
+    *flag = 0;
+    while (str[*i] == ' ' || str[*i] == '#' || str[*i] == '+')
     {
-        if (list_of_formats[i].type == c)
-            return(list_of_formats[i].handle(args));
-        i++;
+        if (str[*i] == ' ')
+        {
+            there_is.space = 1;
+            (*flag)++;
+        }
+        else if (str[*i] == '#')
+        {
+            there_is.hashtage = 1;
+            (*flag)++;
+        }
+        else
+        { 
+            there_is.plus = 1;
+            (*flag)++;
+        }
+        *i = *i + 1;
+    }
+    return (there_is);
+}
+int write_format(const char *str, va_list args, frmt list_of_formats[10], int *flag)
+{
+    int j;
+    char specifier;
+    flags found;
+
+    j = 0;
+    found  = check_flags(str, &j, flag);
+    specifier= str[j];
+
+    while (list_of_formats[j].handle)
+    {
+        if (list_of_formats[j].type == specifier)
+            return list_of_formats[j].handle(args, found);
+        j++;
     }
     return (0);
 }
@@ -45,6 +76,7 @@ int ft_printf(const char *format, ...)
     frmt list_of_formats[10];
     int i;
     int count;
+    int flag;
 
     if (write(1, 0, 0) == -1)
         return (-1);
@@ -56,18 +88,14 @@ int ft_printf(const char *format, ...)
     {
         if (format[i] == '%')
         {
-            if (format[i+1] != '\0')
-            {
-                if (format[i+1] == '%')
-                    count += write(1, "%", 1);
-                else
-                    count += write_format(format[i+1], args, list_of_formats);
-                i += 2;
-            }
+            if (format[i+1] == '%')
+                count += write(1, "%", 1);
+            else
+                count += write_format(&format[i+1], args, list_of_formats, &flag);
+            i = i + 2 + flag;
         }
         else
             count += write(1, &format[i++], 1);
     }
     return (count);
 }
-
