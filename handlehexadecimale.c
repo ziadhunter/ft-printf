@@ -26,5 +26,5 @@ int handle_HEXA(va_list args, flags found)
         if (i != 0)
             j = write(1, "0X", 2);
     }
-    return(ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF") + j);
+    return(ft_putnbr_base(i, "0123456789ABCDEF") + j);
 }
