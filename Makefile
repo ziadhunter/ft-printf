@@ -13,6 +13,12 @@ all: ${NAME}
 $(NAME):${OBJ}
 	$(AR) $@ $^
 
+bonus: ${OBJ}
+	$(AR) ${NAME} $^
+
+test: ${OBJ}
+	${CC} ${OBJ} test.c -o test
+
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
