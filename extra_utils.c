@@ -12,6 +12,13 @@
 
 #include "ft_printf.h"
 
+void	init_flag(t_flags *yes)
+{
+	(*yes).hashtage = 0;
+	(*yes).plus = 0;
+	(*yes).space = 0;
+}
+
 int	print(char *v, int i)
 {
 	int	j;
@@ -71,7 +78,7 @@ int	ft_putnbr(int nb, char base[10])
 		count = write(1, "0", 1);
 	if (nb < 0)
 	{
-		count += write(1, "-", 1);
+		count = write(1, "-", 1);
 		nb *= -1;
 	}
 	while (nb > 0)
@@ -79,6 +86,6 @@ int	ft_putnbr(int nb, char base[10])
 		v[i++] = base[nb % 10];
 		nb /= 10;
 	}
-	count = print(v, i - 1);
+	count += print(v, i - 1);
 	return (count);
 }

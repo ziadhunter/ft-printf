@@ -34,13 +34,6 @@ void	initial_list(t_frmt (*list)[10])
 	(*list)[9].handle = NULL;
 }
 
-void	init_flag(t_flags *yes)
-{
-	(*yes).hashtage = 0;
-	(*yes).plus = 0;
-	(*yes).space = 0;
-}
-
 t_flags	check_flags(const char *str, int *i, int *flag)
 {
 	t_flags	there_is;
@@ -88,18 +81,14 @@ int	write_format(const char *str, va_list args, t_frmt list_of_formats[10],
 	return (0);
 }
 
-int	ft_printf(const char *format, ...)
+int	work(const char *format, t_frmt list_of_formats[10], va_list args)
 {
-	va_list	args;
-	t_frmt	list_of_formats[10];
-	int		i;
-	int		count;
-	int		flag;
+	int	i;
+	int	count;
+	int	flag;
 
-	initial_list(&list_of_formats);
-	va_start(args, format);
-	i = 0;
 	count = 0;
+	i = 0;
 	while (format[i])
 	{
 		if (format[i] == '%')
@@ -115,4 +104,16 @@ int	ft_printf(const char *format, ...)
 			count += write(1, &format[i++], 1);
 	}
 	return (count);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	va_list	args;
+	t_frmt	list_of_formats[10];
+
+	if (!format)
+		return (-1);
+	initial_list(&list_of_formats);
+	va_start(args, format);
+	return (work(format, list_of_formats, args));
 }

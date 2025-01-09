@@ -14,8 +14,8 @@
 
 int	handle_hexa(va_list args, t_flags found)
 {
-	int	j;
-	int	i;
+	int				j;
+	unsigned int	i;
 
 	j = 0;
 	i = va_arg(args, unsigned int);
@@ -29,8 +29,8 @@ int	handle_hexa(va_list args, t_flags found)
 
 int	handle_hexa2(va_list args, t_flags found)
 {
-	int	j;
-	int	i;
+	int				j;
+	unsigned int	i;
 
 	j = 0;
 	i = va_arg(args, unsigned int);

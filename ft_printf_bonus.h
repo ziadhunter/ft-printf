@@ -31,9 +31,11 @@ typedef struct formats
 	int		(*handle)(va_list args, t_flags found);
 }			t_frmt;
 
+int			work(const char *format, t_frmt list_of_formats[10], va_list args);
 int			write_format(const char *str, va_list args,
 				t_frmt list_of_formats[10], int *flag);
 void		init_flag(t_flags *yes);
+int			ft_printf(const char *format, ...);
 t_flags		check_flags(const char *str, int *i, int *flag);
 void		initial_list(t_frmt (*list)[10]);
 int			handle_char(va_list args, t_flags found);
@@ -47,6 +49,5 @@ int			ft_putnbr_base(unsigned long nbr, char *base);
 int			ft_putnbr(int nb, char base[10]);
 int			len(char *base);
 int			print(char *v, int i);
-int			ft_printf(const char *format, ...);
 
 #endif
