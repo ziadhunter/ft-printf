@@ -10,6 +10,10 @@ int main ()
    b = ft_printf("%#x %#X\n", 15, 15);
    printf("%d - %d\n", a, b);
 
+   a = printf("%#x %#X\n", 0, 0);
+   b = ft_printf("%#x %#X\n", 0, 0);
+   printf("%d - %d\n", a, b);
+
    a = printf("%+d\n", 15);
    b = ft_printf("%+d\n", 15);
    printf("%d - %d\n", a, b);
