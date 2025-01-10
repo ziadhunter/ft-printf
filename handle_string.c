@@ -21,7 +21,7 @@ int	handle_string(va_list args, t_flags found)
 	(void)found;
 	str = va_arg(args, char *);
 	if (!str)
-		return (print(")llun(", 6));
+		return (print(")llun(", 5));
 	while (str[i])
 		write(1, &str[i++], 1);
 	return (i);
